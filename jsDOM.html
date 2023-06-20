@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/milligram.css" />
+    <title>JS DOM Working with Form Input</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+      <br />
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+      <br />
+      <label for="password">Password:</label>
+      <input type="password" id="password" required />
+      <br />
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" required />
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      window.onload = function () {
+        var form = document.getElementById("myForm");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          validateForm();
+        });
+      };
+
+      function validateForm() {
+        var nameInput = document.getElementById("name");
+        var emailInput = document.getElementById("email");
+        var passwordInput = document.getElementById("password");
+        var confirmPasswordInput = document.getElementById("confirmPassword");
+
+        var name = nameInput.value.trim();
+        var email = emailInput.value.trim();
+        var password = passwordInput.value.trim();
+        var confirmPassword = confirmPasswordInput.value.trim();
+
+        var nameRegex = /^[A-Za-z]+$/;
+        var emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+        var isValid = true;
+
+        if (name === "" || !nameRegex.test(name)) {
+          showError(
+            nameInput,
+            "Name should not be empty and should contain only letters."
+          );
+          isValid = false;
+        } else {
+          hideError(nameInput);
+        }
+
+        if (email === "" || !emailRegex.test(email)) {
+          showError(emailInput, "Please enter a valid email address.");
+          isValid = false;
+        } else {
+          hideError(emailInput);
+        }
+
+        if (password === "" || !passwordRegex.test(password)) {
+          showError(
+            passwordInput,
+            "Password should have a minimum length of 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit."
+          );
+          isValid = false;
+        } else {
+          hideError(passwordInput);
+        }
+
+        if (confirmPassword === "" || confirmPassword !== password) {
+          showError(
+            confirmPasswordInput,
+            "Confirm Password should match the Password field."
+          );
+          isValid = false;
+        } else {
+          hideError(confirmPasswordInput);
+        }
+
+        if (isValid) {
+          alert("Form submitted successfully!");
+        }
+      }
+
+      function showError(element, errorMessage) {
+        var errorElement = document.createElement("span");
+        errorElement.className = "error-message";
+        errorElement.textContent = errorMessage;
+
+        var parentElement = element.parentElement;
+        parentElement.appendChild(errorElement);
+      }
+
+      function hideError(element) {
+        var parentElement = element.parentElement;
+        var errorElement = parentElement.querySelector(".error-message");
+        if (errorElement) {
+          parentElement.removeChild(errorElement);
+        }
+      }
+    </script>
+  </body>
+</html>

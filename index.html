@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="/style/milligram.css" /> -->
+    <title>Answer</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+      button {
+        padding: 15px 25px;
+        border: none;
+        background-color: rgb(156, 199, 113);
+        font-weight: bold;
+      }
+      .dmmy-img {
+        width: 400px;
+        height: 400px;
+      }
+      p {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      li {
+        list-style: none;
+        font-size: 20px;
+      }
+
+      .para1 {
+        font-weight: bold;
+      }
+
+      #special {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Answer of Question</h1>
+      <br />
+      <br />
+      <img
+        class="dmmy-img"
+        src="https://repository-images.githubusercontent.com/427261627/64a3c609-237d-4b97-a537-c53d3450aaa4"
+        alt=""
+      />
+      <button onclick="openExampleWindow()">img</button>
+
+      <h3 id="browserDitail"></h3>
+
+      <p id="geolocation"></p>
+
+      <ul id="myList"></ul>
+
+      <img
+        class="dmmy-img"
+        id="changeAttributeImg"
+        src="https://www.littlethings.info/wp-content/uploads/2014/04/dummy-image-green-e1398449160839.jpg"
+        alt="Initial Image"
+      />
+      <button id="changeAttributeBtn">Change Image</button>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div>
+      <p>This is a normal paragraph.</p>
+      <p class="para1">This paragraph has the class "para1".</p>
+      <p>This is another normal paragraph.</p>
+      <p id="special">This paragraph has the ID "special".</p>
+    </div>
+
+    <script>
+      //----------1.Date Object-------------
+      // a
+      function dayOfTheWeek(dateString) {
+        var daysOfWeek = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        var date = new Date(dateString);
+        var dayIndex = date.getDay();
+        var dayOfWeek = daysOfWeek[dayIndex];
+
+        return dayOfWeek;
+      }
+      // document.write(dayOfTheWeek("2023-10-13"));
+      console.log(dayOfTheWeek("2023-11-14"));
+
+      // b
+
+      function displayCurrentDayOfWeek() {
+        var daysOfWeek = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        var date = new Date();
+        var dayIndex = date.getDay();
+        var dayOfWeek = daysOfWeek[dayIndex];
+
+        return dayOfWeek;
+      }
+
+      document.write(displayCurrentDayOfWeek() + "<br/>");
+      console.log(displayCurrentDayOfWeek());
+
+      //----------2.Math Object-----------
+
+      // a
+      function calculateSquareRootSum(numbers) {
+        var sumOfSquares = 0;
+
+        for (var i = 0; i < numbers.length; i++) {
+          var square = Math.pow(numbers[i], 2);
+          // console.log(square);
+          sumOfSquares += square;
+        }
+        // console.log(sumOfSquares);
+
+        var squareRoot = Math.sqrt(sumOfSquares);
+        return squareRoot;
+      }
+      var numArr = [2, 4, 5, 6];
+      var result = calculateSquareRootSum(numArr);
+
+      console.log(result);
+
+      // b
+      function displaySquareRootSum(numbers) {
+        var squareRoot = calculateSquareRootSum(numbers);
+        console.log("Square root of the sum of squares: " + squareRoot);
+      }
+
+      var numArr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      displaySquareRootSum(numArr2);
+
+      // ----------------3.Numbers----------------
+
+      // a
+      function isPrime(number) {
+        if (number <= 1) {
+          return false;
+        }
+
+        for (var i = 2; i <= Math.sqrt(number); i++) {
+          if (number % i === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+      console.log(isPrime(29));
+
+      // b
+
+      function checkIfPrime(number) {
+        var isPrimeNumber = isPrime(number);
+        if (isPrimeNumber) {
+          console.log(number + " is a prime number.");
+        } else {
+          console.log(number + " is not a prime number.");
+        }
+      }
+      checkIfPrime(19);
+
+      // ----------------4.Window Object---------------
+
+      function openNewWindow(url, width, height) {
+        var features = "width=" + width + ",height=" + height;
+        window.open(url, "_blank", features);
+      }
+
+      function openExampleWindow() {
+        var url = "https://www.example.com";
+        var width = 800;
+        var height = 600;
+        openNewWindow(url, width, height);
+      }
+
+      // ----------------5.Navigator Object---------------
+
+      function browserDitail() {
+        var appCodeName = navigator.appCodeName;
+        var appVersion = navigator.appVersion;
+
+        return appCodeName + "<br/>" + appVersion;
+      }
+
+      // document.write(browserDitail())
+
+      document.getElementById("browserDitail").innerHTML =
+        "Browser: " + browserDitail();
+
+      // ----------------6.Geolocation---------------
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        document.getElementById("geolocation").innerHTML =
+          "Geolocation is not supported by this browser.";
+      }
+
+      function showPosition(position) {
+        document.getElementById("geolocation").innerHTML =
+          "Latitude: " +
+          position.coords.latitude +
+          "<br>" +
+          "Longitude: " +
+          position.coords.longitude;
+      }
+
+      // ----------------7.JS Common Events:---------------
+
+      // please check jsCommonEvents.html file
+
+      // ----------------8.HTML DOM Document---------------
+
+      //  please check domDocument.html file
+
+      // ----------------9.JS DOM Working with Form Input---------------
+
+      //  please check jsDOM.html file
+
+      // ----------------10.DOM Manipulate CSS Class:--------------
+
+      //  please check domManipulate.html file
+
+      // ----------------11.Create Element & Append Element:--------------
+
+      window.onload = function () {
+        var list = document.getElementById("myList");
+
+        for (var i = 1; i <= 5; i++) {
+          var listItem = document.createElement("li");
+          listItem.textContent = i;
+          list.appendChild(listItem);
+        }
+      };
+
+      // ----------------12.DOM Change Attribute Value:--------------
+
+      window.onload = function () {
+        var image = document.getElementById("changeAttributeImg");
+        var button = document.getElementById("changeAttributeBtn");
+
+        button.addEventListener("click", function () {
+          image.src =
+            "https://repository-images.githubusercontent.com/427261627/64a3c609-237d-4b97-a537-c53d3450aaa4";
+          image.alt = "New Image";
+        });
+      };
+
+      //-----------------13.DOM Query Selector:----------------------
+
+      window.onload = function () {
+        var paragraphs = document.getElementsByClassName("para1");
+
+        for (var i = 0; i < paragraphs.length; i++) {
+          paragraphs[i].style.color = "red";
+        }
+      };
+
+      //-------------------14.AJAX Get Request:-----------------
+
+      //  please check gerRequest.html file
+
+      //-------------------15.AJAX Post Request:-----------------
+
+      //  please check postRewuest.html file
+
+
+    </script>
+  </body>
+</html>

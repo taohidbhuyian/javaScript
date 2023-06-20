@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulate CSS Class</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+      .highlight {
+        background-color: yellow;
+        color: rgb(148, 27, 27);
+      }
+      .btn { 
+        padding: 15px 25px;
+        border: none;
+        background-color: rgb(25, 151, 151);
+        font-weight: bold;
+        color: white;
+        margin: 20px;
+      }
+      p{
+        font-size: 15px;
+        width: 500px;
+        padding: 20px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn" id="myButton">Highlight</button>
+    <p id="myParagraph">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis quidem repudiandae ipsa dignissimos ipsam nostrum maiores neque quaerat id, eum minus veritatis ut at iusto asperiores, consequatur voluptate. Dolorum repellendus quaerat dolores qui cumque possimus maiores fugit porro? Praesentium a reiciendis iste pariatur voluptatum molestiae necessitatibus porro. Sunt, et non!
+    </p>
+
+    <script>
+      window.onload = function () {
+        var button = document.getElementById("myButton");
+        var paragraph = document.getElementById("myParagraph");
+
+        button.addEventListener("click", function () {
+          paragraph.classList.add("highlight");
+        });
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/milligram.css" />
+    <title>PostRequest</title>
+  </head>
+  <body>
+    <button onclick="PostRequest()">Get Request</button>
+
+    <script>
+      function PostRequest() {
+        var URL = "https://api.example.com/submit";
+        // var URL = "https://crud.teamrabbil.com/api/v1/CreateProduct";
+
+        var bodyData = {"name": "John Doe", "email": "johndoe@example.com" };
+
+        var config = {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "content-Type": "application/json",
+          },
+          body: JSON.stringify(bodyData),
+        };
+
+        fetch(URL, config)
+          .then(res => res.json())
+          .then(result => console.log(result))
+          .catch(err => console.log(err));
+      }
+    </script>
+  </body>
+</html>

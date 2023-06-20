@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Common Events</title>
+
+    <style>
+      img {
+        width: 300px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body onclick="handleClick(event)" onkeypress="handleKeyPress(event)">
+    <h1>Event Handling</h1>
+    <p>Click anywhere on the page to display coordinates.</p>
+    <p>Press any key to display key code.</p>
+    <img
+      id="myImage"
+      src="https://repository-images.githubusercontent.com/427261627/64a3c609-237d-4b97-a537-c53d3450aaa4"
+      alt="Image"
+      onmouseover="handleMouseOver(this)"
+      onmouseout="handleMouseOut(this)"
+    />
+
+    <script>
+      function handleClick(event) {
+        var x = event.clientX;
+        var y = event.clientY;
+        alert("Clicked at coordinates (x, y): " + x + ", " + y);
+      }
+
+      function handleKeyPress(event) {
+        var keyCode = event.keyCode || event.which;
+        alert("Key pressed - Key code: " + keyCode);
+      }
+
+      function handleMouseOver(imageElement) {
+        imageElement.src = "https://www.littlethings.info/wp-content/uploads/2014/04/dummy-image-green-e1398449160839.jpg";
+      }
+
+      function handleMouseOut(imageElement) {
+        imageElement.src = "https://repository-images.githubusercontent.com/427261627/64a3c609-237d-4b97-a537-c53d3450aaa4";
+      }
+    </script>
+  </body>
+</html>
